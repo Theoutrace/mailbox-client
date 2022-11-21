@@ -1,8 +1,10 @@
 import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
 const Signup = (props) => {
   const [checkPass, setCheckPass] = useState("");
+  const history = useNavigate()
 
   const URL =
     "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDhhQvMVnkPCbfy1-UGhTN18Z9O8_-Ugx4";
@@ -13,7 +15,6 @@ const Signup = (props) => {
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-
     const enteredEmail = inputEmailRef.current.value;
     const enteredPassword = inputPasswordRef.current.value;
     const enteredConfirmPassword = inputConfirmPasswordRef.current.value;
@@ -28,22 +29,26 @@ const Signup = (props) => {
         body: JSON.stringify({
           email: enteredEmail,
           password: enteredPassword,
-          returnSecureToken: true
+          returnSecureToken: true,
         }),
         headers: { "Content-Type": "application/json" },
       }).then((res) => {
         if (res.ok) {
           return res.json().then((data) => {
-            console.log('User has successfully signed up!');
+            localStorage.setItem('token', data.idToken)
+            history('/welcome')
           });
         } else {
           const errorMsg = "Authentication Failed";
           alert(errorMsg);
         }
       });
-
     }
   };
+
+  const loginSignupToggleHandler = ()=>{
+    props.toToggle()
+  }
 
   return (
     <div className="signup-conponent-container">
@@ -73,6 +78,12 @@ const Signup = (props) => {
             <button>Sign up</button>
           </div>
         </form>
+        <div className="have-an-account-option-container">
+          <div className="have-an-account-text-n-btn-container">
+            Already have account? 
+            <button onClick={loginSignupToggleHandler}>Login</button>
+          </div>
+        </div>
       </div>
     </div>
   );

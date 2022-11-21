@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    padding: 0px 40px 0px 40px;
+    padding: 10px 40px 10px 40px;
 }
 
 .contnr-app-name{
@@ -22,7 +22,7 @@
 
 .ul-contnr-hedr-menu ul li{
     list-style: none;
-    margin: 0px 20px 0px 0px;
+    margin: 0px 15px 0px 0px;
     padding: 3px 8px 3px 8px;
 }
 
@@ -31,4 +31,44 @@
     background-color: rgb(192, 226, 226);
     border-radius: 3px;
     cursor: pointer;
+}
+
+.ul-contnr-hedr-menu ul li:last-child{
+    list-style: none;
+    background-color: rgb(20, 21, 21);
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 3px 12px 3px 12px;
+    border: 1px solid black;
+}
+
+
+.ul-contnr-hedr-menu ul li:last-child:hover{
+    list-style: none;
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 3px 12px 3px 12px;
+    border: 1px solid black;
+
+}
+
+.navLink-login-btn{
+    color: white;
+    text-decoration: none;
+}
+
+.navLink-login-btn:hover{
+    color: rgb(17, 17, 17);
+    text-decoration: none;
 }

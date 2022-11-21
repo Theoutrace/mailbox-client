@@ -34,7 +34,17 @@
 .signup-form-container form input{
     height: 20px;
     margin-bottom: 5px;
-    border: 1px solid rgba(128, 128, 128, 0.229);
+    border: 1px solid rgba(128, 128, 128, 0.157);
+    border-radius: 5px; 
+    width: 190px;
+    padding: 5px;
+    outline: none;
+}
+
+.signup-form-container form input:focus{
+    height: 20px;
+    margin-bottom: 5px;
+    border: 1px solid rgba(45, 103, 210, 0.308);
     border-radius: 5px; 
     width: 190px;
     padding: 5px;
@@ -42,11 +52,20 @@
 
 
 .signup-form-btn-container{
+    /* background-color: aqua; */
     margin-top: 20px;
     height: 50px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.forget-pass-txt-container{
+    margin-top: 3px;
+    text-decoration: underline;
+    font-size: 12px;
+    cursor: pointer;
 }
 
 .signup-form-btn-container button{
@@ -56,8 +75,9 @@
     padding: 5px;
     border-radius: 25px;
     cursor: pointer;
-    background-color: rgb(38, 35, 35);
+    background-color: rgb(61, 43, 226);
     color: white;
+    text-decoration: none;
 }
 
 .signup-form-btn-container button:hover{
@@ -67,12 +87,8 @@
     padding: 5px;
     border-radius: 25px;
     cursor: pointer;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(35, 15, 223);
     color: white;
-}
-
-.pass-didnt-match{
-    background-color: rgba(245, 186, 179, 0.737);
 }
 
 .have-an-account-option-container{
@@ -95,5 +111,10 @@
     padding: 0px;
     border: 0px;
     cursor: pointer;
-    margin: 5px;
+}
+
+
+/* logic for password match */
+.pass-didnt-match{
+    background-color: rgba(245, 186, 179, 0.737);
 }
