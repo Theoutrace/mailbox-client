@@ -1,0 +1,94 @@
+.compose-mail-component{
+    margin-top: 30px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.compose-mail-inner{
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.104);
+    padding: 20px;
+    border-radius: 3px;
+    box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.label-container-to{
+    display: flex;
+    padding: 2px;
+    font-size: 18px;
+    margin-bottom: 5px;
+    font-weight: 550;
+}
+
+.compose-mail-inner input{
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: 0px;
+    height: 25px;
+    padding-left: 10px;
+}
+
+.toolbarClassName{
+    background-color: rgb(87, 87, 85);
+    display: flex;
+    overflow-y: hidden;
+    border-radius: 3px;
+}
+
+.public-DraftStyleDefault-ltr{
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    overflow-y: auto;
+    border-radius: 3px;
+    padding: 10px;
+}
+
+.public-DraftStyleDefault-ltr::-webkit-scrollbar{
+    width: 0px;
+}
+
+.compose-mail-inner button{
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 3px;
+    margin-top: 10px;
+    height: 30px;
+    border: 1px solid rgba(0, 0, 0, 0);
+}
+
+.compose-mail-inner button:hover{
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+.cancel-mail-btn-cntnr{
+    width: 100%;
+    margin-top: 5px;
+    display: flex;
+    justify-content: left;
+
+}
+.cancel-mail-btn-cntnr button{
+    background-color: brown;
+    color: white;
+    width: 8%;
+    border: 1px solid rgba(128, 128, 128, 0);
+    height: 30px;
+    border-radius: 3px;
+}
+
+.cancel-mail-btn-cntnr button:hover{
+    border: 1px solid brown;
+    background-color: white;
+    color: brown;
+    cursor: pointer;
+}

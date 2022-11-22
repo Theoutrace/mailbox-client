@@ -1,11 +1,14 @@
 import React, { useRef } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../../Store/auth/auth";
 import "./Login.css";
 
 const Login = (props) => {
   const inputEmailRef = useRef();
   const inputPasswordRef = useRef();
   const history = useNavigate()
+  const dispatch = useDispatch()
 
   const URL =
     "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyDhhQvMVnkPCbfy1-UGhTN18Z9O8_-Ugx4";
@@ -27,8 +30,10 @@ const Login = (props) => {
     }).then((res) => {
       if (res.ok) {
         return res.json().then((data) => {
-        //   console.log(data);
+          // console.log(data);
           localStorage.setItem('token',data.idToken)
+          localStorage.setItem('email', data.email)
+          dispatch(authActions.login({email: data.email, idToken: data.idToken}))
           history('/welcome')
         });
       } else {
