@@ -1,4 +1,4 @@
-import { Fragment, useRef } from "react";
+import { useRef } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useSelector } from "react-redux";
@@ -75,35 +75,32 @@ const ComposeMail = () => {
   };
 
   const cancelComposeHandler = () => {
-    history("/welcome");
+    history("/welcome/inbox");
   };
 
   return (
-    <Fragment>
-      <div className="compose-mail-component">
-        <div className="compose-mail-inner">
-          <div className="label-container-to">
-            <label htmlFor="mail-id">To,</label>
-          </div>
-          <input
-            id="mail-id"
-            type="email"
-            ref={enteredToInputRef}
-            placeholder="abc@xyz.com"
-          />
-          <input
-            type="text"
-            placeholder="Subject"
-            ref={enteredSubjectInputRef}
-          />
+    <div className="compose-mail-component">
+      <div className="compose-mail-inner">
+        <div className="label-container-to">
+          <label htmlFor="mail-id">To,</label>
+        </div>
+        <input
+          id="mail-id"
+          type="email"
+          ref={enteredToInputRef}
+          placeholder="abc@xyz.com"
+        />
+        <input type="text" placeholder="Subject" ref={enteredSubjectInputRef} />
+        <div className="editor-container-body-space">
           <Editor onEditorStateChange={onEditorStateChange} />
-          <button onClick={onSendClickHandler}>Send</button>
         </div>
-        <div className="cancel-mail-btn-cntnr">
-          <button onClick={cancelComposeHandler}>Cancel</button>
-        </div>
+
+        <button onClick={onSendClickHandler}>Send</button>
       </div>
-    </Fragment>
+      <div className="cancel-mail-btn-cntnr">
+        <button onClick={cancelComposeHandler}>🡐 Back</button>
+      </div>
+    </div>
   );
 };
 

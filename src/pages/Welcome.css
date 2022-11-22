@@ -1,0 +1,73 @@
+.welcome-component-container{
+    height: 100%;
+    margin-top: 20px;
+}
+
+.welcome-text-container{
+    padding: 10px;
+    height: 100%;
+}
+
+.welcome-contain-compose-inbox-sent-containers{
+    margin: 10px;
+    height: 100%;
+
+}
+
+.contain-compose-inbox-sent{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.contain-compose-inbox-sent-ab{
+    /* background-color: rgba(61, 87, 10, 0); */
+    width: 200px;
+    margin-right: 10px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-right: 1px solid rgba(128, 128, 128, 0.16);
+}
+
+.single-navlink-container-navlink{
+    width: 90%;
+    height: 35px;
+    background-color: rgb(0, 0, 0);
+    margin: 5px;
+    border: 1px solid rgba(128, 128, 128, 0);
+    border-radius: 3px;
+    font-size: 14px;
+    color: white;
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.single-navlink-container-navlink:hover{
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+    cursor: pointer;
+}
+
+.single-navlink-container-navlink:first-child{
+    background-color: blueviolet;
+    margin-bottom: 30px;
+    font-size: 18px;
+    border-radius: 25px;
+}
+
+.single-navlink-container-navlink:first-child:hover{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid purple;
+    color: purple;
+}
+
+.inbox-sent-compose-container{
+    /* background-color: aqua; */
+    width: 85%;
+}

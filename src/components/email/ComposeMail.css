@@ -1,13 +1,11 @@
 .compose-mail-component{
-    margin-top: 30px;
-    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 }
 
 .compose-mail-inner{
+    background-color: #b0c8f489;
     width: 70%;
     display: flex;
     flex-direction: column;
@@ -40,15 +38,19 @@
     border-radius: 3px;
 }
 
-.public-DraftStyleDefault-ltr{
-    height: 200px;
+.editor-container-body-space{
     background-color: rgb(255, 255, 255);
-    overflow-y: auto;
-    border-radius: 3px;
-    padding: 10px;
+    height: 270px;
+    overflow-y: scroll;
+    padding: 2px;
 }
 
-.public-DraftStyleDefault-ltr::-webkit-scrollbar{
+.public-DraftStyleDefault-ltr{
+
+    padding: 0px 10px 0px 10px;
+    margin: 0px;
+}
+.editor-container-body-space::-webkit-scrollbar{
     width: 0px;
 }
 
@@ -72,7 +74,7 @@
 
 .cancel-mail-btn-cntnr{
     width: 100%;
-    margin-top: 5px;
+    margin-top: 5%;
     display: flex;
     justify-content: left;
 
@@ -80,7 +82,7 @@
 .cancel-mail-btn-cntnr button{
     background-color: brown;
     color: white;
-    width: 8%;
+    width:100px;
     border: 1px solid rgba(128, 128, 128, 0);
     height: 30px;
     border-radius: 3px;
