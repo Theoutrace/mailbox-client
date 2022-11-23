@@ -71,3 +71,10 @@
     /* background-color: aqua; */
     width: 85%;
 }
+
+.unread-mails-count-inbx-btn{
+    margin-left: 10px;
+    background-color: blueviolet;
+    padding: 2px 10px 2px 10px;
+    border-radius: 25px;
+}

@@ -16,10 +16,10 @@ function App() {
       </header>
       <div className="app-components-routes">
         <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/welcome" element={<Navigate to="/welcome/inbox" />} />
+          <Route path="/" element={<Navigate to="/welcome" />} />
+          {authStateValue.login && <Route path="/welcome" element={<Navigate to="/welcome/inbox" />} />}
           {!authStateValue.login && (
-            <Route path="/welcome" element={<Navigate to="/login" />} />
+            <Route path="/welcome/*" element={<Navigate to="/login" />} />
           )}
           {!authStateValue.login && (
             <Route path="/compose" element={<Navigate to="/login" />} />

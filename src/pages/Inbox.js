@@ -1,39 +1,63 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SingleMail from "../components/InboxMails/SingleMail";
-import auth from "../Store/auth/auth";
+import { mailActions } from "../Store/mail/mail";
+
+let initial = true;
 
 const Inbox = () => {
-  const [allmails, setAllmails] = useState([]);
+  const inbox = useSelector((state) => state.mail);
+  const allMails = inbox.inboxMails;
+  const dispatch = useDispatch();
   const authState = useSelector((state) => state.auth);
-  // console.log(authState.email.replace(/[^a-zA-Z0-9]/g,''));
-
   const plainEmail = authState.email.replace(/[^a-zA-Z0-9]/g, "");
+
   useEffect(() => {
-    if (plainEmail.length > 0) {
-      fetch(
-        `https://mailbox-clie-default-rtdb.firebaseio.com/${plainEmail}/inbox.json`,
-        {
-          method: "GET",
-        }
-      ).then((res) => {
-        if (res.ok) {
-          return res.json().then((data) => {
-            // console.log(data);
-            const result = Object.keys(data).map((key) => [
-              { id: key.toString(), values: data[key] },
-            ]);
-            setAllmails(result);
-          });
-        }
-      });
+    // console.log('calling');
+
+    function getmailsAgain() {
+      // console.log('get running');
+      if (plainEmail.length > 0) {
+        fetch(
+          `https://mailbox-clie-default-rtdb.firebaseio.com/${plainEmail}/inbox.json`,
+          {
+            method: "GET",
+          }
+        ).then((res) => {
+          if (res.ok) {
+            return res.json().then((data) => {
+              const result = Object.keys(data).map((key) => [
+                { id: key.toString(), values: data[key] },
+              ]);
+              // console.log(result);
+              dispatch(mailActions.getMails(result));
+              // console.log(result);
+              const notReadMails = result.filter(
+                (mail) => mail[0].values.read === false
+              );
+              // console.log(notReadMails);
+              dispatch(mailActions.markReadChage(notReadMails));
+            });
+          }
+        });
+      }
     }
-  },[]);
+
+    if (initial) {
+      initial = false;
+      getmailsAgain();
+      return;
+    }
+
+    setInterval(() => {
+      getmailsAgain();
+    }, 5000);
+  }, [allMails.length, plainEmail, dispatch]);
 
   return (
     <div className="compose-mail-component">
-      {allmails.map((mail) => {
-       return <SingleMail key={mail[0].id} mail={mail}/>
+      {allMails.map((mail) => {
+        return <SingleMail key={mail[0].id} mail={mail} />;
       })}
     </div>
   );

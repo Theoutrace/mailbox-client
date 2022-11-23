@@ -1,0 +1,69 @@
+.openmail-ouer-div-mail-content-cntnr{
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: left;
+}
+
+.from-initial-text-from-contnr{
+    background-color: rgb(255, 255, 255);
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-size: 25px;
+    font-weight: 500;
+    margin: 5px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.email-time-dte-container-open-mel{
+    /* background-color: brown; */
+    width:92%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.from-from-user-mail{
+    /* background-color: blueviolet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+}
+
+.from-text-open-mail-container{
+    font-size: 14px;
+    margin-right: 5px;
+    font-weight: 400;
+}
+
+.date-dte-time-tme-opn-mail{
+    /* background-color: antiquewhite; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sub-cntnr-sb-opn-mel-cntnr-und-frm{
+    /* background-color: aqua; */
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.mail-body-opn-mail-main-cntnr{
+    /* background-color: aqua; */
+    margin-top: 5px;
+    border-top: 1px solid grey;
+    height: 445px;
+    text-align: left;
+    padding: 10px;
+}

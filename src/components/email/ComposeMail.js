@@ -23,6 +23,19 @@ const ComposeMail = () => {
   const userPlainEmail = userEmail.replace(/[^a-zA-Z0-9]/g, "");
   // console.log(userPlainEmail);
 
+  // console.log("date ", new Date().getDate());
+  // console.log("Month ", new Date().getMonth());
+  // console.log("year ", new Date().getFullYear());
+  // console.log(new Date().getHours());
+  // console.log(new Date().getMinutes());
+
+  const currentDate = {
+    date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
+    time: `${new Date().getHours()}:${new Date().getMinutes()}`
+  };
+
+  // console.log(currentDate);
+
   const onSendClickHandler = async () => {
     const enteredTo = enteredToInputRef.current.value;
     const enteredSubject = enteredSubjectInputRef.current.value;
@@ -37,10 +50,11 @@ const ComposeMail = () => {
     // );
 
     const mailObj = {
-      from: userPlainEmail,
+      from: userEmail,
       subject: enteredSubject,
       body: bodyText,
       read: false,
+      time:currentDate
     };
 
     const toPlainEmail = enteredTo.replace(/[^a-zA-Z0-9]/g, ""); // receiver's email
