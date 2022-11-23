@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { mailActions } from "../../Store/mail/mail";
@@ -15,54 +15,59 @@ const OpenMail = () => {
   const plainEmail = authMail.email.replace(/[^a-zA-Z0-9]/g, "");
   const mailId = location.state.id;
 
-  function markRead(plainEmail, mailId) {
-    fetch(
-      `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailId}.json`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ ...location.state.values, read: true }),
-        headers: { "Content-Type": "application/json" },
-      }
-    ).then((res) => {
-      if (res.ok) {
-        return res.json().then((data) => {
-        });
-      }
-    });
-  }
+  useEffect(() => {
+    // console.log('marking use effect');
 
-  markRead(plainEmail, mailId);
+    const reamainingMails = allMails.filter(mail=> mail[0].id !== mailId && mail[0].values.read !== true)
+    // console.log(reamainingMails);
+
+      fetch(
+        `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailId}.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ ...location.state.values, read: true }),
+          headers: { "Content-Type": "application/json" },
+        }
+      ).then((res) => {
+        if (res.ok) {
+          return res.json().then((data) => {
+            dispatch(mailActions.markReadChage(reamainingMails))
+          });
+        }
+      });
+
+  }, []);
 
   const obj = location.state;
-  const fromId = obj.values.from;       
-  const firstInitialFrom = fromId[0];    // for user name 1 letter
-
+  const fromId = obj.values.from;
+  const firstInitialFrom = fromId[0]; // for user name 1 letter
 
   const deleteMailHandler = () => {
-    const plainEmail = authMail.email.replace(/[^a-zA-Z0-9]/g,'')
-    const reamainingMails = allMails.filter(mail=> mail[0].id !== location.state.id)
-    const mailIdToDeleteMail = location.state.id
-    console.log(plainEmail,mailId);
+    const plainEmail = authMail.email.replace(/[^a-zA-Z0-9]/g, "");
+    const reamainingMails = allMails.filter(
+      (mail) => mail[0].id !== location.state.id
+    );
+    const mailIdToDeleteMail = location.state.id;
+    // console.log(plainEmail,mailId);
 
-    if(plainEmail.length>0 && mailId.length>0){
+    if (plainEmail.length > 0 && mailId.length > 0) {
       fetch(
         `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailIdToDeleteMail}.json`,
         {
           method: "DELETE",
         }
-      ).then(res=>{
-        if(res.ok){
-          return res.json().then(data=>{
+      ).then((res) => {
+        if (res.ok) {
+          return res.json().then((data) => {
             // console.log(data);
-            // dispatch(mailActions.getMails(reamainingMails))
-            history("/welcome/inbox")
-          })
-        }else{
-          alert('something went wrong!')
+            dispatch(mailActions.getMails(reamainingMails));
+            history("/welcome/inbox");
+          });
+        } else {
+          alert("something went wrong!");
         }
-      })
+      });
     }
-
   };
 
   return (

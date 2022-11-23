@@ -7,7 +7,6 @@ import "./ComposeMail.css";
 
 const ComposeMail = () => {
   const authStateValue = useSelector((state) => state.auth);
-  // console.log(authStateValue);
   const enteredToInputRef = useRef();
   const enteredSubjectInputRef = useRef();
   const history = useNavigate();
@@ -21,33 +20,17 @@ const ComposeMail = () => {
     ? authStateValue.email
     : localStorage.getItem("email");
   const userPlainEmail = userEmail.replace(/[^a-zA-Z0-9]/g, "");
-  // console.log(userPlainEmail);
-
-  // console.log("date ", new Date().getDate());
-  // console.log("Month ", new Date().getMonth());
-  // console.log("year ", new Date().getFullYear());
-  // console.log(new Date().getHours());
-  // console.log(new Date().getMinutes());
 
   const currentDate = {
     date: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
     time: `${new Date().getHours()}:${new Date().getMinutes()}`
   };
 
-  // console.log(currentDate);
 
   const onSendClickHandler = async () => {
     const enteredTo = enteredToInputRef.current.value;
     const enteredSubject = enteredSubjectInputRef.current.value;
 
-    // console.log(
-    //   "receiver: ",
-    //   enteredTo,
-    //   "Subject: ",
-    //   enteredSubject,
-    //   "Body: ",
-    //   bodyText
-    // );
 
     const mailObj = {
       from: userEmail,
@@ -75,7 +58,7 @@ const ComposeMail = () => {
               headers: { "Content-Type": "application/json" },
             }).then((res) => {
               if (res.ok) {
-                alert(`Mail sent Successfully to ${enteredTo}`);
+                // alert(`Mail sent Successfully to ${enteredTo}`);
                 enteredToInputRef.current.value = "";
                 enteredSubjectInputRef.current.value = "";
               }

@@ -13,7 +13,7 @@ const Inbox = () => {
   const plainEmail = authState.email.replace(/[^a-zA-Z0-9]/g, "");
 
   useEffect(() => {
-    getmailsAgain();
+    // getmailsAgain();
 
 
     function getmailsAgain() {
@@ -49,9 +49,9 @@ const Inbox = () => {
       }
     }
 
-    // setInterval(() => {
-    //   getmailsAgain();
-    // }, 10000);
+    setInterval(() => {
+      getmailsAgain();
+    }, 10000);
 
     if (initial) {
       initial = false;
