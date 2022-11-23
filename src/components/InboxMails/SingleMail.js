@@ -1,13 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { mailActions } from "../../Store/mail/mail";
+import deleteIcon from './images/delete.png'
 import "./SingleMail.css";
 
 const SingleMail = (props) => {
+  const authEmail= useSelector((state)=> state.auth.email)
+  const allMails = useSelector(state=> state.mail.inboxMails)
+  const dispatch = useDispatch()
+  // console.log(allMails);
+
+  const [isShow, setIsShow] = useState(false);
   const data = props.mail[0];
-  // console.log(data);
+
+
+  const deleteMailHandler =() =>{
+
+    const plainEmail = authEmail.replace(/[^a-zA-Z0-9]/g,'')
+    const reamainingMails = allMails.filter(mail=> mail[0].id !== data.id)
+    // console.log(reamainingMails);
+
+    const mailId = data.id
+    fetch(
+      `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailId}.json`,
+      {
+        method: "DELETE",
+      }
+    ).then(res=>{
+      if(res.ok){
+        return res.json().then(data=>{
+          // console.log(data);
+          dispatch(mailActions.getMails(reamainingMails))
+        })
+      }else{
+        alert('something went wrong!')
+      }
+    })
+  }
+
 
   return (
     <div
+      onMouseEnter={() => setIsShow(true)}
+      onMouseLeave={() => setIsShow(false)}
       className={
         !data.values.read
           ? "single-mail-container-inbox"
@@ -37,12 +73,23 @@ const SingleMail = (props) => {
             <div className="from-mail-txt-container">{data.values.from}</div>
           </div>
           <div className="sub-sub-singl-mel-sub">{data.values.subject}</div>
-          <div className="date-n-time-container-sngl-mail-inbx">
-            <div className="date-single-mel-inbx">{data.values.time.date}</div>
-            <div className="time-single-mel-inbx">{data.values.time.time}</div>
-          </div>
+          {!isShow && (
+            <div className="date-n-time-container-sngl-mail-inbx">
+              <div className="date-single-mel-inbx">
+                {data.values.time.date}
+              </div>
+              <div className="time-single-mel-inbx">
+                {data.values.time.time}
+              </div>
+            </div>
+          )}
         </div>
       </NavLink>
+      {isShow && (
+        <div className="delete-btn-single-mail-itm-inbox" onClick={deleteMailHandler}>
+          <img src={deleteIcon} alt='' width='20'></img>
+        </div>
+      )}
     </div>
   );
 };

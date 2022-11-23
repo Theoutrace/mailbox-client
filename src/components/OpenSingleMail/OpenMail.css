@@ -16,7 +16,7 @@
     text-transform: uppercase;
     font-size: 25px;
     font-weight: 500;
-    margin: 5px;
+    margin: 5px 10px 5px 5px;
     box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
@@ -37,9 +37,11 @@
 }
 
 .from-text-open-mail-container{
-    font-size: 14px;
+    font-size: 12px;
     margin-right: 5px;
     font-weight: 400;
+    color: rgba(94, 95, 96, 0.853);
+    font-weight: 550;
 }
 
 .date-dte-time-tme-opn-mail{
@@ -47,6 +49,24 @@
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.date-open-single-mail{
+    /* background-color: aqua; */
+    margin-right: 5px;
+    font-size: 12px;
+    font-weight: 550;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.time-open-single-mail{
+    background-color: rgba(40, 42, 42, 0.16);
+    padding: 2px 5px 2px 5px;
+    border-radius: 25px;
+    font-size: 12px;
+    font-weight: 550;
 }
 
 .sub-cntnr-sb-opn-mel-cntnr-und-frm{
@@ -60,10 +80,63 @@
 }
 
 .mail-body-opn-mail-main-cntnr{
-    /* background-color: aqua; */
+    background-color: rgba(255, 255, 255, 0);
     margin-top: 5px;
-    border-top: 1px solid grey;
+    border-top: 1px solid rgba(128, 128, 128, 0.149);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.149);
+
     height: 445px;
     text-align: left;
     padding: 10px;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.mail-main-body-received-text-container{
+    background-color: rgb(255, 255, 255);
+    height: 500px;
+    width: 90%;
+    padding: 10px 10px 20px 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.more-options-in-open-mail-single-cntnr{
+    /* background-color: azure; */
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    padding-bottom: 6px ;
+    padding-top: 6px ;
+    border-top: 1px dashed rgba(128, 128, 128, 0.198);
+    border-bottom: 1px dashed rgba(128, 128, 128, 0.198);
+}
+
+.more-options-in-open-mail-single-cntnr button{
+    background-color: rgba(240, 248, 255, 0);
+    border: 0px;
+    font-size: 14px;
+    margin-left: 0px;
+    margin-right: 20px;
+    padding: 2px 8px 2px 8px;
+    cursor: pointer;
+}
+
+.more-options-in-open-mail-single-cntnr div img{
+    margin-right: 5px;
+}
+
+.more-options-in-open-mail-single-cntnr div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0);
+    padding: 3px 6px 3px 6px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 14px;
+
 }

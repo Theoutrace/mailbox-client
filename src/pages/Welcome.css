@@ -32,19 +32,20 @@
 }
 
 .single-navlink-container-navlink{
-    width: 90%;
-    height: 35px;
+    width: 70%;
+    height: 30px;
     background-color: rgb(0, 0, 0);
-    margin: 5px;
+    margin: 1px;
     border: 1px solid rgba(128, 128, 128, 0);
-    border-radius: 3px;
+    border-radius: 4px 4px 4px 4px;
     font-size: 14px;
     color: white;
     font-weight: 500;
     text-decoration: none;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    padding: 0px 4px 0px 10px;
 }
 
 .single-navlink-container-navlink:hover{
@@ -57,8 +58,14 @@
 .single-navlink-container-navlink:first-child{
     background-color: blueviolet;
     margin-bottom: 30px;
+    height: 35px;
     font-size: 18px;
     border-radius: 25px;
+    justify-content: center;
+}
+
+.single-navlink-container-navlink:last-child{
+    justify-content: center;
 }
 
 .single-navlink-container-navlink:first-child:hover{
@@ -72,9 +79,11 @@
     width: 85%;
 }
 
+
 .unread-mails-count-inbx-btn{
     margin-left: 10px;
     background-color: blueviolet;
     padding: 2px 10px 2px 10px;
-    border-radius: 25px;
+    border-radius: 4px;
+    color: white;
 }

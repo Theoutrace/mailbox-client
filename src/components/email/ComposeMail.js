@@ -59,8 +59,8 @@ const ComposeMail = () => {
 
     const toPlainEmail = enteredTo.replace(/[^a-zA-Z0-9]/g, ""); // receiver's email
 
-    const URL = `https://mailbox-clie-default-rtdb.firebaseio.com/${toPlainEmail}/inbox.json`;
-    const URLSENT = `https://mailbox-clie-default-rtdb.firebaseio.com/${userPlainEmail}/sent.json`;
+    const URL = `https://mailbox-two-default-rtdb.firebaseio.com/${toPlainEmail}/inbox.json`;
+    const URLSENT = `https://mailbox-two-default-rtdb.firebaseio.com/${userPlainEmail}/sent.json`;
     try {
       if (toPlainEmail.length > 0) {
         fetch(URL, {

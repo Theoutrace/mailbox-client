@@ -13,45 +13,51 @@ const Inbox = () => {
   const plainEmail = authState.email.replace(/[^a-zA-Z0-9]/g, "");
 
   useEffect(() => {
-    // console.log('calling');
+    getmailsAgain();
+
 
     function getmailsAgain() {
-      // console.log('get running');
+      console.log("fetching called", new Date().getSeconds());
       if (plainEmail.length > 0) {
         fetch(
-          `https://mailbox-clie-default-rtdb.firebaseio.com/${plainEmail}/inbox.json`,
+          `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox.json`,
           {
             method: "GET",
           }
         ).then((res) => {
           if (res.ok) {
             return res.json().then((data) => {
-              const result = Object.keys(data).map((key) => [
-                { id: key.toString(), values: data[key] },
-              ]);
-              // console.log(result);
-              dispatch(mailActions.getMails(result));
-              // console.log(result);
-              const notReadMails = result.filter(
-                (mail) => mail[0].values.read === false
-              );
-              // console.log(notReadMails);
-              dispatch(mailActions.markReadChage(notReadMails));
+              if (data) {
+                const result = Object.keys(data).map((key) => [
+                  { id: key.toString(), values: data[key] },
+                ]);
+
+                dispatch(mailActions.getMails(result));
+
+                const notReadMails = result.filter(
+                  (mail) => mail[0].values.read === false
+                );
+
+                dispatch(mailActions.markReadChage(notReadMails));
+              } else {
+                dispatch(mailActions.markReadChage([]));
+                dispatch(mailActions.getMails([]));
+              }
             });
           }
         });
       }
     }
 
+    // setInterval(() => {
+    //   getmailsAgain();
+    // }, 10000);
+
     if (initial) {
       initial = false;
       getmailsAgain();
       return;
     }
-
-    setInterval(() => {
-      getmailsAgain();
-    }, 5000);
   }, [allMails.length, plainEmail, dispatch]);
 
   return (
