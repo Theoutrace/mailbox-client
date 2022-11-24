@@ -15,7 +15,7 @@ const Inbox = () => {
   useEffect(() => {
 
     function getmailsAgain() {
-      console.log("fetching called", new Date().getSeconds());
+      // console.log("fetching called", new Date().getSeconds());
       if (plainEmail.length > 0) {
         fetch(
           `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox.json`,
@@ -47,9 +47,9 @@ const Inbox = () => {
       }
     }
 
-    // setInterval(() => {
-    //   getmailsAgain();
-    // }, 10000);
+    setInterval(() => {
+      getmailsAgain();
+    }, 2000);
 
     if (initial) {
       initial = false;
