@@ -7,7 +7,7 @@ import "./OpenSingleSentMail";
 
 const OpenSingleSentMail = () => {
   const location = useLocation();
-  console.log(location);
+//   console.log(location);
   const authMail = useSelector((state) => state.auth);
   const allMails = useSelector((state) => state.mail.sentMails);
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ const OpenSingleSentMail = () => {
   };
 
   const obj = location.state;
-  const fromId = obj.values.from;
+  const fromId = obj.values.receiver;  // it is used as 'to' and named as from to keep it confusing. (receivers mail id needed in sent box)
   const firstInitialFrom = fromId[0]; // for user name 1 letter
 
   console.log(obj.values);
@@ -60,8 +60,8 @@ const OpenSingleSentMail = () => {
         <div className="from-initial-text-from-contnr">{firstInitialFrom}</div>
         <div className="email-time-dte-container-open-mel">
           <div className="from-from-user-mail">
-            <div className="from-text-open-mail-container">from : </div>
-            {obj.values.from}
+            <div className="from-text-open-mail-container">To : </div>
+            {obj.values.receiver}
           </div>
           <div className="date-dte-time-tme-opn-mail">
             <div className="date-open-single-mail">{obj.values.time.date}</div>

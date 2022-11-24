@@ -40,7 +40,7 @@ const ComposeMail = () => {
       time:currentDate
     };
 
-    console.log(mailObj);
+    // console.log(mailObj);
 
     const toPlainEmail = enteredTo.replace(/[^a-zA-Z0-9]/g, ""); // receiver's email
 
@@ -56,7 +56,7 @@ const ComposeMail = () => {
           if (res.ok) {
             fetch(URLSENT, {
               method: "POST",
-              body: JSON.stringify({ ...mailObj }),
+              body: JSON.stringify({ ...mailObj, receiver: enteredTo }),
               headers: { "Content-Type": "application/json" },
             }).then((res) => {
               if (res.ok) {

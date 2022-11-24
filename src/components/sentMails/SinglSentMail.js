@@ -33,6 +33,8 @@ const SinglSentMail = (props) => {
     });
   };
 
+//   console.log(data.values);
+
 
   return (
     <div
@@ -58,8 +60,8 @@ const SinglSentMail = (props) => {
       >
         <div className="nav-lnk-first-div">
           <div className="from-text-n-sende-mail-cntnr">
-            <div className="from-text-container">from</div>
-            <div className="from-mail-txt-container">{data.values.from}</div>
+            <div className="from-text-container">To : </div>
+            <div className="from-mail-txt-container">{data.values.receiver}</div>
           </div>
           <div className="sub-sub-singl-mel-sub">{data.values.subject}</div>
           {!isShow && (

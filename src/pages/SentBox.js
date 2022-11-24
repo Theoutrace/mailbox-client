@@ -10,13 +10,12 @@ const SentBox = () => {
     const dispatch = useDispatch()
 
     useEffect(()=>{
-        console.log('running');
+        // console.log('running');
         fetch(`https://mailbox-two-default-rtdb.firebaseio.com/${plainMail}/sent.json`,{
             method: 'GET'
         }).then(res=> {
             if(res.ok){
                 return res.json().then(data=> {
-                    // console.log(data);
                     const result = Object.keys(data).map(key => [{id: key, values: data[key]}])
                     // console.log(result);
                     dispatch(mailActions.getSent(result))

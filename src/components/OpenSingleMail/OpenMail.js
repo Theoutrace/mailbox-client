@@ -16,11 +16,7 @@ const OpenMail = () => {
   const mailId = location.state.id;
 
   useEffect(() => {
-    console.log('marking use effect');
-
     const reamainingMails = allMails.filter(mail=> mail[0].id !== mailId && mail[0].values.read !== true)
-    // console.log(reamainingMails);
-
       fetch(
         `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailId}.json`,
         {
@@ -48,7 +44,6 @@ const OpenMail = () => {
       (mail) => mail[0].id !== location.state.id
     );
     const mailIdToDeleteMail = location.state.id;
-    // console.log(plainEmail,mailId);
 
     if (plainEmail.length > 0 && mailId.length > 0) {
       fetch(
