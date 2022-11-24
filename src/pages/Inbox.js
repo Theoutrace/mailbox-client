@@ -13,8 +13,6 @@ const Inbox = () => {
   const plainEmail = authState.email.replace(/[^a-zA-Z0-9]/g, "");
 
   useEffect(() => {
-    // getmailsAgain();
-
 
     function getmailsAgain() {
       console.log("fetching called", new Date().getSeconds());
@@ -49,15 +47,17 @@ const Inbox = () => {
       }
     }
 
-    setInterval(() => {
-      getmailsAgain();
-    }, 10000);
+    // setInterval(() => {
+    //   getmailsAgain();
+    // }, 10000);
 
     if (initial) {
       initial = false;
       getmailsAgain();
       return;
     }
+
+
   }, [allMails.length, plainEmail, dispatch]);
 
   return (

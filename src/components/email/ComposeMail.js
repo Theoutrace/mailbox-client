@@ -40,6 +40,8 @@ const ComposeMail = () => {
       time:currentDate
     };
 
+    console.log(mailObj);
+
     const toPlainEmail = enteredTo.replace(/[^a-zA-Z0-9]/g, ""); // receiver's email
 
     const URL = `https://mailbox-two-default-rtdb.firebaseio.com/${toPlainEmail}/inbox.json`;

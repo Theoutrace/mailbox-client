@@ -6,6 +6,9 @@ const mailSlice = createSlice({
     reducers: {
         getMails(state,action){
             state.inboxMails = action.payload
+        },
+
+        getSent(state,action){
             state.sentMails = action.payload
         },
 

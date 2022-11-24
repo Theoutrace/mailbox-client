@@ -1,46 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { mailActions } from "../../Store/mail/mail";
 import deleteIcon from "./images/delete.png";
-import "./OpenMail.css";
+import "./OpenSingleSentMail";
 
-const OpenMail = () => {
+const OpenSingleSentMail = () => {
   const location = useLocation();
+  console.log(location);
   const authMail = useSelector((state) => state.auth);
-  const allMails = useSelector((state) => state.mail.inboxMails);
+  const allMails = useSelector((state) => state.mail.sentMails);
   const dispatch = useDispatch();
   const history = useNavigate();
-
-  const plainEmail = authMail.email.replace(/[^a-zA-Z0-9]/g, "");
-  const mailId = location.state.id;
-
-  useEffect(() => {
-    console.log('marking use effect');
-
-    const reamainingMails = allMails.filter(mail=> mail[0].id !== mailId && mail[0].values.read !== true)
-    // console.log(reamainingMails);
-
-      fetch(
-        `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailId}.json`,
-        {
-          method: "PUT",
-          body: JSON.stringify({ ...location.state.values, read: true }),
-          headers: { "Content-Type": "application/json" },
-        }
-      ).then((res) => {
-        if (res.ok) {
-          return res.json().then((data) => {
-            dispatch(mailActions.markReadChage(reamainingMails))
-          });
-        }
-      });
-
-  }, []);
-
-  const obj = location.state;
-  const fromId = obj.values.from;
-  const firstInitialFrom = fromId[0]; // for user name 1 letter
 
   const deleteMailHandler = () => {
     const plainEmail = authMail.email.replace(/[^a-zA-Z0-9]/g, "");
@@ -48,19 +19,20 @@ const OpenMail = () => {
       (mail) => mail[0].id !== location.state.id
     );
     const mailIdToDeleteMail = location.state.id;
-    // console.log(plainEmail,mailId);
+    const mailId = location.state.id;
 
     if (plainEmail.length > 0 && mailId.length > 0) {
       fetch(
-        `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/inbox/${mailIdToDeleteMail}.json`,
+        `https://mailbox-two-default-rtdb.firebaseio.com/${plainEmail}/sent/${mailIdToDeleteMail}.json`,
         {
           method: "DELETE",
         }
       ).then((res) => {
         if (res.ok) {
           return res.json().then((data) => {
-            dispatch(mailActions.getMails(reamainingMails));
-            history("/welcome/inbox");
+            // console.log(data);
+            dispatch(mailActions.getSent(reamainingMails));
+            history("/welcome/sent");
           });
         } else {
           alert("something went wrong!");
@@ -69,10 +41,16 @@ const OpenMail = () => {
     }
   };
 
+  const obj = location.state;
+  const fromId = obj.values.from;
+  const firstInitialFrom = fromId[0]; // for user name 1 letter
+
+  console.log(obj.values);
+
   return (
     <div>
       <div className="more-options-in-open-mail-single-cntnr">
-        <button onClick={() => history("/welcome/inbox")}>Back</button>
+        <button onClick={() => history("/welcome/sent")}>Back</button>
         <div onClick={deleteMailHandler}>
           <img src={deleteIcon} alt="" width="14" />
           Remove
@@ -104,4 +82,4 @@ const OpenMail = () => {
   );
 };
 
-export default OpenMail;
+export default OpenSingleSentMail;
