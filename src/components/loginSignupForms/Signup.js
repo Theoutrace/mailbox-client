@@ -1,10 +1,13 @@
 import React, { useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../../Store/auth/auth";
 import "./Signup.css";
 
 const Signup = (props) => {
   const [checkPass, setCheckPass] = useState("");
-  const history = useNavigate()
+  const history = useNavigate();
+  const dispatch = useDispatch();
 
   const URL =
     "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDhhQvMVnkPCbfy1-UGhTN18Z9O8_-Ugx4";
@@ -35,8 +38,12 @@ const Signup = (props) => {
       }).then((res) => {
         if (res.ok) {
           return res.json().then((data) => {
-            localStorage.setItem('token', data.idToken)
-            history('/welcome')
+            localStorage.setItem("token", data.idToken);
+            localStorage.setItem("email", enteredEmail);
+            dispatch(
+              authActions.login({ email: enteredEmail, idToken: data.idToken })
+            );
+            history("/welcome");
           });
         } else {
           const errorMsg = "Authentication Failed";
@@ -46,9 +53,9 @@ const Signup = (props) => {
     }
   };
 
-  const loginSignupToggleHandler = ()=>{
-    props.toToggle()
-  }
+  const loginSignupToggleHandler = () => {
+    props.toToggle();
+  };
 
   return (
     <div className="signup-conponent-container">
@@ -80,7 +87,7 @@ const Signup = (props) => {
         </form>
         <div className="have-an-account-option-container">
           <div className="have-an-account-text-n-btn-container">
-            Already have account? 
+            Already have account?
             <button onClick={loginSignupToggleHandler}>Login</button>
           </div>
         </div>

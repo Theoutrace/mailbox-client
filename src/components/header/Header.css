@@ -72,3 +72,32 @@
     color: rgb(17, 17, 17);
     text-decoration: none;
 }
+
+.user-initial-div-text-container-header{
+    background-color: rgb(0, 0, 0);
+    padding: 3px 10px 3px 20px;
+    color: rgb(202, 198, 198);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    margin-left: auto;
+}
+
+.online-dot-header{
+    background-color: rgb(61, 236, 66);
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.offline-dot-header{
+    background-color: rgb(236, 61, 61);
+    height: 10px;
+    width: 10px;
+    margin: 5px;
+    border-radius: 50%;
+}

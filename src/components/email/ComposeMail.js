@@ -97,7 +97,7 @@ const ComposeMail = () => {
         <button onClick={onSendClickHandler}>Send</button>
       </div>
       <div className="cancel-mail-btn-cntnr">
-        <button onClick={cancelComposeHandler}>🡐 Back</button>
+        <button onClick={cancelComposeHandler}>🡐 Leave It</button>
       </div>
     </div>
   );

@@ -1,13 +1,37 @@
-import { useSelector } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import "./App.css";
 import ComposeMail from "./components/email/ComposeMail";
 import Header from "./components/header/Header";
 import LoginSignup from "./pages/LoginSignup";
 import WelcomePage from "./pages/WelcomePage";
+import { authActions } from "./Store/auth/auth";
 
 function App() {
+  console.log('app ran');
   const authStateValue = useSelector((state) => state.auth);
+  // console.log(authStateValue.email);
+  const dispatch=useDispatch()
+  const history = useNavigate()
+
+  useEffect(()=>{
+    // console.log('app useeffect ran');
+    const email = localStorage.getItem('email')
+    const idToken = localStorage.getItem('token')
+
+      // console.log(email,'============');
+    if(email){
+      // console.log(email,'---------------------------');
+      // console.log(idToken);
+      dispatch(authActions.login({email:email, idToken: idToken}))
+      history('/welcome/inbox')
+
+    }else{
+      // console.log(authStateValue.email,'---------------------------------');
+      dispatch(authActions.logout())
+    }
+  },[dispatch, authStateValue.email])
 
   return (
     <div className="App">
